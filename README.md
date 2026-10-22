@@ -16,14 +16,14 @@ A complete browser-based soccer film-room demo, rebuilt for ADV 332. Includes th
 ## A two-minute presentation
 
 1. Open the homepage and select **Step into your film room**.
-2. Select **Pick up the review**. The included five-minute Utrecht–Ajax video starts at the first curated moment, 2:00.
+2. Select **Pick up the review**. The included 13-minute PSG–Barcelona video starts at the first curated moment, 0:37.
 3. Select **Play moment**, add an arrow or circle to a paused frame, and **Keep for Maya**.
 4. Select **Publish**, then **Publish feedback**. This publishes within the browser workspace.
 5. Open **Player view**, watch the clip, mark it reviewed, and complete a training task.
 6. Open **Parent view** for the plain-language family summary, or **Development** for actual review and training counts.
 7. To demonstrate upload, import any MP4/WebM, or download the bundled demo video using the link in its film room. Imported footage starts with an empty queue; use **Mark a new moment** to create a time-coded coaching clip.
 
-The six curated demo moments also have **downloadable MP4 excerpts**. Download links remain available only while the original curated start/end ranges are unchanged.
+The six curated demo moments also have **downloadable MP4 excerpts** (13–21 seconds each), with individual thumbnails. Download links remain available only while the original curated start/end ranges are unchanged.
 
 ## What works
 
@@ -47,9 +47,9 @@ The six curated demo moments also have **downloadable MP4 excerpts**. Download l
 
 ## Demo video
 
-[Utrecht v Ajax, December 2018 — source and download](https://commons.wikimedia.org/wiki/File:Utrecht_v_Ajax_Dec_2018.webm)
+[PSG–Barcelona — compressed demo MP4](https://raw.githubusercontent.com/vishanthashok/adv-332-project/main/public/psg-barcelona-demo.mp4)
 
-Video by FCUFAN, CC BY 3.0. Bundled video is re-encoded; six excerpts and a poster are included. All credits and transformation details are in [ATTRIBUTION.md](ATTRIBUTION.md). Roster identities and training assignments are fictional and are not identities of athletes in the footage.
+User-supplied CBS Sports Golazo footage. The 1080p original is compressed to a 540p H.264/AAC full video, with six 720p excerpts and individual thumbnails. Broadcaster watermarks remain visible. Credits and transformation details are in [ATTRIBUTION.md](ATTRIBUTION.md). Roster identities and training assignments are fictional and do not identify athletes in the footage. No Creative Commons license is claimed for this source.
 
 ## Local development
 

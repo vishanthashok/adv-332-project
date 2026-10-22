@@ -4,17 +4,17 @@
 
 The Filmiq logo was supplied by the project owner. The original is retained as `public/filmiq-logo.png`. At the owner’s request, the built-in image editor removed the textured background to create `public/filmiq-logo-transparent.png`, preserving the lime mark and wordmark for use directly on the website surfaces.
 
-## Demo football video and poster
+## Current demo: PSG–Barcelona
 
-**Utrecht v Ajax Dec 2018** — FCUFAN, 23 December 2018.
+**PSG vs. Barcelona: Extended Highlights | UCL League Phase MD 3 | CBS Sports Golazo** — supplied by the project owner as a local 1080p MP4.
 
-- Source and author information: https://commons.wikimedia.org/wiki/File:Utrecht_v_Ajax_Dec_2018.webm
-- Original publication: https://www.youtube.com/watch?v=qB0IeospJxg
-- License listed on the source: Creative Commons Attribution 3.0 Unported — https://creativecommons.org/licenses/by/3.0/
-- Changes: converted the 480p WebM transcode to H.264/AAC MP4 for browser compatibility; extracted a poster at 2:45; created six 12-second excerpts at 2:00, 2:30, 2:45, 3:15, 4:00, and 4:30. Existing video credits remain visible.
-- `public/demo-match.mp4`, `public/demo-poster.jpg`, and `public/demo-clips/*.mp4` carry this attribution.
+- Source broadcaster: CBS Sports Golazo. Existing CBS Sports, Paramount+, and other source watermarks remain visible.
+- This source replaces the former FCUFAN Utrecht–Ajax demo. The previous Creative Commons attribution does not apply to the CBS footage. No open license is claimed; rights remain with the respective owners.
+- Changes: full video re-encoded to 960 × 540 H.264/AAC at 30 fps for browser playback; six 1280 × 720 excerpts extracted; a match poster and six clip thumbnails extracted.
+- Clip time ranges refer to the supplied highlights file, not the match clock: 0:37–0:50, 1:33–1:54, 3:50–4:04, 6:20–6:38, 8:28–8:44, and 11:42–12:02.
+- Current assets: `public/psg-barcelona-demo.mp4`, `public/psg-demo-poster.jpg`, and `public/psg-clips/*`.
 
-The coaching prompts are curated educational examples. The youth team roster, assignments, and training tasks are fictional demonstration data and do not identify or rate athletes in the professional footage. There is no affiliation or endorsement by the clubs or video author.
+Coaching notes are manually curated educational observations and training suggestions. Youth team names, roster assignments, and tasks are demonstration data and do not identify or rate the professional athletes in the footage. No machine learning or tracking is used. No affiliation or endorsement by the broadcaster or clubs is implied.
 
 ## Interface
 
