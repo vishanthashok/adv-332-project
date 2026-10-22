@@ -2,7 +2,7 @@
 
 ## Brand
 
-The Filmiq logo was supplied by the project owner and is reproduced as supplied.
+The Filmiq logo was supplied by the project owner. The original is retained as `public/filmiq-logo.png`. At the owner’s request, the built-in image editor removed the textured background to create `public/filmiq-logo-transparent.png`, preserving the lime mark and wordmark for use directly on the website surfaces.
 
 ## Demo football video and poster
 

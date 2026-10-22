@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { X, ArrowUpRight, Play, ArrowRight, Plus } from 'lucide-react';
 import type { Category } from './data';
-export function Logo({small=false}:{small?:boolean}){return <span className={`brand-frame ${small?'small':''}`}><img className="brand-logo" src="/filmiq-logo.png" alt="Filmiq"/></span>;}
+export function Logo({small=false}:{small?:boolean}){return <span className={`brand-frame ${small?'small':''}`}><img className="brand-logo" src="/filmiq-logo-transparent.png" alt="Filmiq"/></span>;}
 export function Crest({small=false}:{small?:boolean}){return <div className={`crest ${small?'small':''}`} aria-hidden="true"><span>R</span><i>FC</i></div>;}
 export function Badge({children,tone='neutral'}:{children:React.ReactNode;tone?:string}){return <span className={`badge ${tone}`}>{children}</span>;}
 export function CategoryBadge({category}:{category:Category}){return <Badge tone={category==='Great execution'?'green':category==='Technique'?'amber':'blue'}><span className="dot"/>{category}</Badge>;}
