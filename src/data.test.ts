@@ -24,3 +24,19 @@ describe('demo replacement',()=>{
  });
  it('does not restore a demo the user has removed after migration',()=>{const saved={...seedWorkspace(),matches:[],moments:[]};expect(migrateDemo(saved)).toBe(saved);});
 });
+
+describe('verified matchday roster',()=>{
+ it('has both full squads, unambiguous identities, and valid clip assignments',()=>{
+  const data=seedWorkspace();expect(data.players).toHaveLength(46);
+  for(const club of ['PSG','Barcelona']){const squad=data.players.filter(p=>p.club===club);expect(squad).toHaveLength(23);expect(squad.filter(p=>p.squadRole==='Starter')).toHaveLength(11);expect(new Set(squad.map(p=>p.number)).size).toBe(23);}
+  expect(new Set(data.players.map(p=>p.id)).size).toBe(46);
+  for(const m of data.moments)expect(data.players.some(p=>p.id===m.playerId)).toBe(true);
+  expect(data.moments.find(m=>m.id==='psg-3')?.playerId).toBe('psg-doue');
+  expect(data.moments.find(m=>m.id==='psg-5')?.playerId).toBe('psg-hernandez');
+  expect(data.moments.find(m=>m.id==='psg-6')?.playerId).toBe('psg-ruiz');
+ });
+ it('removes unused placeholder players but preserves identities referenced by uploaded footage',()=>{
+  const seed=seedWorkspace();const old={...seed,rosterVersion:undefined,team:{name:'Riverside FC',age:'U17',coach:'Coach Ramirez',season:'Fall 2026'},players:[{id:'maya',name:'Maya Torres',number:4,position:'Left back',goal:''},{id:'jordan',name:'Jordan Ellis',number:8,position:'Central midfield',goal:''}],matches:[...seed.matches,{...seed.matches[0],id:'own-footage',sample:false,mediaId:'own-blob'}],moments:[{...seed.moments[0],playerId:'maya'},{...seed.moments[1],id:'my-note',matchId:'own-footage',playerId:'maya'}]};
+  const next=migrateDemo(old);expect(next.players.some(p=>p.id==='jordan')).toBe(false);expect(next.players.find(p=>p.id==='maya')?.club).toBe('Custom');expect(next.moments.find(m=>m.id==='my-note')?.playerId).toBe('maya');expect(next.moments.find(m=>m.id==='psg-1')?.playerId).toBe('psg-hakimi');expect(next.team.name).toBe('Paris Saint-Germain');
+ });
+});

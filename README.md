@@ -17,7 +17,7 @@ A complete browser-based soccer film-room demo, rebuilt for ADV 332. Includes th
 
 1. Open the homepage and select **Step into your film room**.
 2. Select **Pick up the review**. The included 13-minute PSG–Barcelona video starts at the first curated moment, 0:37.
-3. Select **Play moment**, add an arrow or circle to a paused frame, and **Keep for Maya**.
+3. Select **Play moment**, add an arrow or circle to a paused frame, and **Keep for Hakimi**.
 4. Select **Publish**, then **Publish feedback**. This publishes within the browser workspace.
 5. Open **Player view**, watch the clip, mark it reviewed, and complete a training task.
 6. Open **Parent view** for the plain-language family summary, or **Development** for actual review and training counts.
@@ -49,7 +49,7 @@ The six curated demo moments also have **downloadable MP4 excerpts** (13–21 se
 
 [PSG–Barcelona — compressed demo MP4](https://raw.githubusercontent.com/vishanthashok/adv-332-project/main/public/psg-barcelona-demo.mp4)
 
-User-supplied CBS Sports Golazo footage. The 1080p original is compressed to a 540p H.264/AAC full video, with six 720p excerpts and individual thumbnails. Broadcaster watermarks remain visible. Credits and transformation details are in [ATTRIBUTION.md](ATTRIBUTION.md). Roster identities and training assignments are fictional and do not identify athletes in the footage. No Creative Commons license is claimed for this source.
+User-supplied CBS Sports Golazo footage. The 1080p original is compressed to a 540p H.264/AAC full video, with six 720p excerpts and individual thumbnails. Broadcaster watermarks remain visible. Credits and transformation details are in [ATTRIBUTION.md](ATTRIBUTION.md). The roster includes both confirmed matchday squads (46 players), with club, shirt number, and starter/bench status. Analysis and drills are curated demo suggestions, not statements from club staff. No Creative Commons license is claimed for this source.
 
 ## Local development
 
