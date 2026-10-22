@@ -7,7 +7,7 @@ export type Drawing = { type: 'arrow' | 'circle'; x1: number; y1: number; x2: nu
 export type Player = { id: string; name: string; number: number; position: string; goal: string; club?: string; squadRole?: 'Starter' | 'Bench' };
 export type Match = { id: string; opponent: string; date: string; competition: string; venue: string; score: string; duration: number; sample: boolean; mediaId?: string; fileName?: string; size?: number; createdAt: number; videoSrc?: string; sourceUrl?: string; sourceCredit?: string; poster?: string };
 export type Moment = { id: string; matchId: string; playerId: string; title: string; start: number; end: number; category: Category; note: string; cue: string; drill: string; status: Status; watched: boolean; completed: boolean; drawings: Drawing[]; poster?: string };
-export type Workspace = { version: 1; demoVersion?: number; rosterVersion?: number; team: { name: string; age: string; coach: string; season: string }; players: Player[]; matches: Match[]; moments: Moment[] };
+export type Workspace = { version: 1; updatedAt?: number; demoVersion?: number; rosterVersion?: number; team: { name: string; age: string; coach: string; season: string }; players: Player[]; matches: Match[]; moments: Moment[] };
 export const categories: Category[] = ['Positioning', 'Technique', 'Decision making', 'Great execution'];
 export const uid = () => crypto.randomUUID();
 export const clock = (s: number) => `${Math.floor(Math.max(0,s)/60)}:${String(Math.floor(Math.max(0,s)%60)).padStart(2,'0')}`;
@@ -49,13 +49,28 @@ export function migrateDemo(saved: Workspace): Workspace {
  }
  return next;
 }
+const backupKey='filmiq-workspace-backup-v1';
+let lastSave=0;
+function workspaceBackup(): Workspace | undefined {
+ try { const raw=localStorage.getItem(backupKey); if(!raw)return; const value=JSON.parse(raw); if(value.version===1&&Array.isArray(value.players)&&Array.isArray(value.matches)&&Array.isArray(value.moments)&&value.team)return value as Workspace; } catch { /* IndexedDB remains the primary store when backup is unavailable. */ }
+}
 export async function loadWorkspace(): Promise<Workspace> {
- const db=await dbPromise; const saved=await db.get('workspace','current');
+ let saved:Workspace|undefined;
+ try { saved=await (await dbPromise).get('workspace','current'); }
+ catch(error) { saved=workspaceBackup(); if(!saved)throw error; }
+ const backup=workspaceBackup();
+ if(backup&&(!saved||(backup.updatedAt??0)>(saved.updatedAt??0)))saved=backup;
  const next=saved?migrateDemo(saved):seedWorkspace();
- if(!saved||next!==saved)await db.put('workspace',next,'current');
+ if(!saved||next!==saved)await saveWorkspace(next);
  return next;
 }
-export async function saveWorkspace(data: Workspace) { await (await dbPromise).put('workspace',data,'current'); }
+export async function saveWorkspace(data: Workspace) {
+ const record={...data,updatedAt:Math.max(Date.now(),lastSave+1,(data.updatedAt??0)+1)};lastSave=record.updatedAt;
+ let backupSaved=false;
+ try { localStorage.setItem(backupKey,JSON.stringify(record));backupSaved=true; } catch { /* Large media stays in IndexedDB; a blocked backup must not stop a primary save. */ }
+ try { await (await dbPromise).put('workspace',record,'current'); }
+ catch(error) { if(!backupSaved)throw error; }
+}
 export async function saveMedia(id: string,file: Blob) { await (await dbPromise).put('media',file,id); }
 export async function getMedia(id: string): Promise<Blob|undefined> { return (await dbPromise).get('media',id); }
 export async function deleteMedia(id: string) { await (await dbPromise).delete('media',id); }
