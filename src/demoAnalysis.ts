@@ -4,7 +4,7 @@ export const dimensions=['Positioning','Passing','Awareness','Decision-making','
 export const strengths=[
  {title:'Turn recoveries into forward attacks',body:'The opening-goal sequence offers a useful example of quick forward support after possession changes.',moment:'psg-3'},
  {title:'Arrive into scoring space',body:'Use the late cutback to discuss the timing of a supporting run, rather than waiting inside the box.',moment:'psg-6'},
- {title:'Commit to the delivery',body:'The corner sequence is a starting point for studying movement and attacking the ball.',moment:'psg-5'},
+ {title:'Stretch the recovering defense',body:'The open-play attack offers a discussion about width, central runs and the space between recovering defenders.',moment:'psg-5'},
 ];
 export const weaknesses=[
  {id:'cover',title:'Wide-channel defensive cover',body:'A coaching question: can the covering defender see the ball and the next runner as play moves wide?',moment:'psg-1',player:'psg-hakimi',cue:'Move with the pass. Check your shoulder. Keep your cover.'},

@@ -36,6 +36,7 @@ The six curated demo moments also have **downloadable MP4 excerpts** (13–21 se
 - Real video file import, browser codec validation, native playback, seeking, playback of timestamped ranges.
 - Local IndexedDB storage of videos, match metadata, roster, notes, annotations, review decisions, and training completion. Workspace metadata also has a localStorage backup/fallback; video blobs remain in IndexedDB.
 - Searchable match library and moment queue, category tagging, player assignment, editable start/end times, notes, cues, and drills.
+- Six frame-specific guided video annotations: automatic coaching pauses, hand-placed circles/arrows, cue captions, resume/replay, teaching-frame jump and clean-video toggle. These work from intelligence, radar, drill evidence and the player inbox. Marks appear only on the exact paused frame.
 - Arrow and ellipse annotations on paused footage, annotation undo, Keep/Skip decisions, decision undo, and batch publication.
 - Player selection, coach-published feedback, review acknowledgement, and training checklist.
 - Parent summaries, printable summary, and development activity counts.

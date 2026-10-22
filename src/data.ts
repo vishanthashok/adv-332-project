@@ -24,7 +24,7 @@ export function seedWorkspace(): Workspace {
     ['psg-2','alex','Find the finish without rushing the touch.',93,114,'Technique','This first-half chance ends with the goalkeeper making the save. Watch the attacker’s preparation in the box, then use the replay to study the contact. Where is the space before the shot?','Set your body. Pick your corner.','Receive a cutback from a partner and finish through a cone gate. Use one preparation touch when needed. 3 sets of 6.','pending'],
     ['psg-3','maya','Win it. Play forward. Finish the move.',230,244,'Great execution','PSG break forward and finish the move for the opening goal. Watch the supporting runs as the ball travels into the final third. The useful lesson is how quickly the team turns a forward opportunity into a shot.','First look forward. Support the next pass.','Three attackers against two defenders from halfway. Attack immediately after a turnover and finish within 10 seconds. 6 repetitions.','published'],
     ['psg-4','jordan','Give the ball carrier a second option.',380,398,'Decision making','Study the shape around midfield in these second-half sequences. Pick one player away from the ball and follow their movement. How do they change the passing angle without standing next to a teammate?','Scan. Move off the line. Offer an angle.','Four-player passing diamond with one passive defender. Move out of the defender’s cover shadow before receiving. 8 minutes.','pending'],
-    ['psg-5','maya','Meet the cross. Track the runner.',508,524,'Positioning','This corner sequence ends with PSG taking the lead again. Watch the delivery and the movement in the box. As a defender, find a position where you can see both the ball and your runner before attacking the cross.','Ball and runner. Stay connected.','Corner-kick practice with three attackers and three defenders. Call your runner, make a shoulder check, and attack the delivery. 6 corners from each side.','published'],
+    ['psg-5','maya','Keep the runner and goal in view.',508,524,'Positioning','Study this open-play attack. Compare the central run with the recovering defender’s line to goal. Pause at 8:34 and ask how the defender can see the ball and runner together. This is a team-level teaching example, not an individual performance assessment.','Recover inside. See the ball and the runner.','Three attackers against two recovering defenders. Start from a wide pass, recover toward goal and keep the runner in view. Reset after each attack and rotate roles after 6 repetitions.','published'],
     ['psg-6','sam','Arrive for the cutback.',702,722,'Great execution','PSG attack down the right and work the ball across the penalty area for the late finish. Follow the supporting runner rather than the ball. Notice the timing of the arrival into the scoring space.','Arrive with the pass. Don’t wait in the space.','Two wide players deliver cutbacks for a midfielder arriving from outside the box. Alternate sides and time the run to meet the pass. 3 sets of 6.','published']
   ];
   return {version:1,demoVersion:4,rosterVersion:1,team:{name:'Paris Saint-Germain',age:'First team',coach:'Match analyst',season:'2026/27'},players,
@@ -47,6 +47,14 @@ export function migrateDemo(saved: Workspace): Workspace {
   const importedIds=new Set(imported.map(p=>p.id));
   next={...next,rosterVersion:1,team:next.team.name==='Riverside FC'?seed.team:next.team,players:[...imported,...retained.filter(p=>!importedIds.has(p.id))],moments:next.moments.map(m=>m.matchId==='psg-barcelona-demo'&&clipPlayerIds[m.id]?{...m,playerId:clipPlayerIds[m.id]}:m)};
  }
+ const corrected=next.moments.map(m=>{
+  if(m.id!=='psg-5'||m.matchId!=='psg-barcelona-demo')return m;
+  const original={title:'Meet the cross. Track the runner.',note:'This corner sequence ends with PSG taking the lead again. Watch the delivery and the movement in the box. As a defender, find a position where you can see both the ball and your runner before attacking the cross.',cue:'Ball and runner. Stay connected.',drill:'Corner-kick practice with three attackers and three defenders. Call your runner, make a shoulder check, and attack the delivery. 6 corners from each side.'};
+  const revised=seed.moments.find(x=>x.id==='psg-5')!;let result=m;
+  for(const field of ['title','note','cue','drill'] as const)if(m[field]===original[field])result={...result,[field]:revised[field]};
+  return result;
+ });
+ if(corrected.some((m,i)=>m!==next.moments[i]))next={...next,moments:corrected};
  return next;
 }
 const backupKey='filmiq-workspace-backup-v1';
